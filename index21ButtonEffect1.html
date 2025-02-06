@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Effect-1</title>
+</head>
+<body>
+    <a href="#" class="btn"><span>Button</span></a>
+    
+    <style>
+        body{
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color:aliceblue ;
+            font-family: sans-serif;
+        }
+        
+        .btn{
+            background-color: pink;
+            padding: 20px 40px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+            text-decoration: none;
+            color: black;
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .btn span{
+            z-index: 1;
+            position: relative;
+        }
+    
+        .btn::before{
+            content: "";
+            position: absolute;
+            background-color: orangered;
+            width: 0;
+            height: 0;
+            left: var(--xPos);
+            top: var(--yPos);
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            transition: width .5s, height .5s;
+    
+        }
+    
+        .btn:hover::before{
+            width: 300px;
+            height: 300px;
+            
+    
+        }
+    
+    </style>
+    <script>
+        const btnEl = document.querySelector('.btn');//selecting the button element
+    
+        btnEl.addEventListener("mouseover", (event)=>{
+            const x = (event.pageX - btnEl.offsetLeft);//getting the x postion of the mouse
+
+            const y = (event.pageY - btnEl.offsetTop);//getting the y postion of the mouse
+
+            btnEl.style.setProperty("--xPos", x + "px");//setting the x postion of the mosue
+
+            btnEl.style.setProperty('--yPos', y + "px");//setting the y postion of the mouse
+            
+    
+        })
+    </script>
+</body>
+</html>
